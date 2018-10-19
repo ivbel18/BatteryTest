@@ -8,6 +8,7 @@ import android.os.BatteryManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context c, Intent i) {
             int level = i.getIntExtra("level", 0);
             batteryLevel.setText(String.valueOf(level));
+
+            if (level < 20) {
+                Toast.makeText(c, "Battery level is low, reducing sensor activity", Toast.LENGTH_LONG).show();
+            }
         }
 
     };
